@@ -1,0 +1,285 @@
+//writing-mode: vertical-lr;
+//writing-mode:
+
+// box-Sizing
+// example: @include box-sizing(border-box);
+@mixin box-sizing($type)
+ {
+ -webkit-box-sizing:$type;
+ -moz-box-sizing:$type;
+ -ms-box-sizing:$type;
+ -o-box-sizing:$type;
+ box-sizing:$type;
+ }
+
+
+// display: Show / Hide
+// example: @include display(hide);
+@mixin display($disp) {
+  @if $disp == show {
+    display: block;
+  }
+  @if $disp == hide {
+    display: none;
+  }
+}
+
+// 計算: z-Index
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}
+
+
+@function is-valid-length($value) {
+  @return (type-of($value) == "number" and not unitless($value)) 
+       or (index(auto initial inherit 0, $value) != false);
+}
+
+// shadow: 內 | 外 陰影
+// example: @include box-shadow(0px, 0px, 0px, #000, true);
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+  @if $inset { //內陰影
+    -webkit-box-shadow:inset $top $left $blur $color;
+    -moz-box-shadow:inset $top $left $blur $color;
+    box-shadow:inset $top $left $blur $color;
+  } @else {
+    -webkit-box-shadow: $top $left $blur $color;
+    -moz-box-shadow: $top $left $blur $color;
+    box-shadow: $top $left $blur $color;
+  }
+}
+
+// btn-color: darken | lighten
+@mixin button($color,$background,$HoverColor,$HoverBackground,$border) {
+  color:$color;
+  background: $background;
+  border:$border !important;
+  &:hover {
+    color:$HoverColor;
+    background:$HoverBackground;
+    border:$border;
+    transition: all 0.3s ease;
+  }
+  &:active {
+    color:darken($color,25%);
+    border:$border;
+    background:$HoverBackground;
+  } 
+}
+
+// 計算欄位
+// example: @include calc( width, 60%,'100% - 2px')
+@mixin calc($property,$default, $expression) {
+  #{$property}: $default;
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+
+
+// hack: for ie10 | ie11
+// example: @include hack_ie10-11{}
+@mixin hack_ie10-11() {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+
+// 透明度跨瀏覽
+// example: @include opacity(0.8);
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin mask($color, $position){
+  &::after{
+    content:'';
+    display:block;
+    background:$color;
+    width:100%;
+    height:100%;
+    @include transition(1s);
+    @include fixed($position);
+    @include animation(maskFadeIn, 1s, linear, false, 1, normal, forwards);
+  }
+}
+
+// 外框線
+// example: @include outline(1px, rgba(0,0,0,0.2), dashed, 1px, #fff )
+@mixin outline($outline-width: 2px,
+               $outline-color: rgba(tomato, 0.2),
+               $outline-style: dashed,
+               $outline-offset: 2px,
+               $background-color: $outline-color) {
+
+  outline: $outline-width $outline-color $outline-style;
+  outline-offset: (-1 * ($outline-width + $outline-offset));
+  background-color: $background-color;
+}
+
+@mixin fixed-top-blank-height-use($pc-height,$mb-height){
+  &::before{
+    content:'';
+    display:block;
+    width:100%;
+    height:$pc-height;
+    @include media-max(lg){
+      height:$mb-height;
+    }
+  }
+}
+
+@mixin hamburger-style($type){
+  @if $type == 'x'{
+    &.hamburger {
+      //按鈕轉換
+      i {
+        // background-color: #fff;
+        content: '';
+        width: 100%;
+        height: 2px;
+        @include display(show);
+        border-radius: 2px;
+        @include transition(0.2s);
+        &:nth-of-type(1) {
+          @include transform(rotate(45deg));
+          @include transform-origin(10px -3px);
+        }
+        &:nth-of-type(2) {
+          margin: 6px 0;
+          @include opacity(0);
+        }
+        &:nth-of-type(3) {
+          @include transform(rotate(-45deg));
+          @include transform-origin(2px 1px);
+        }
+      }
+      &[aria-expanded="true"] {
+        i {
+          &:nth-child(1) {
+            @include transform(rotate(0));
+          }
+          &:nth-child(2) {
+            @include opacity(1);
+            // margin-top: 4px;
+          }
+          &:nth-child(3) {
+            @include transform(rotate(0));
+            // margin-top: 4px;
+          }
+        }
+      }
+    }
+  }
+  @if $type == 'rotate-x'{
+    &.__rotate-x {
+      i{
+          background-color: #000;
+          content: '';
+          width: 100%;
+          height: 2px;
+          @include display(show);
+          // @include borderRadius(1px);
+          &:nth-child(1){
+              @include animation(outT,0.8s,false,false,false,reverse,backwards);
+          }
+          &:nth-child(2){
+              margin: 5px 0;
+              @include animation(outM,0.8s,false,false,false,reverse,backwards);
+          }
+          &:nth-child(3){
+              @include animation(outBtm,0.8s,false,false,false,reverse,backwards);
+          }
+        &:focus{
+          outline:0;
+        }
+      }
+      &[aria-expanded="true"]{
+          i{
+              &:nth-child(1){
+                  @include animation(inT,0.8s,false,false,false,normal,forwards);
+              }
+              &:nth-child(2){
+                  @include animation(inM,0.8s,false,false,false,normal,forwards);
+              }
+              &:nth-child(3){
+                  @include animation(inBtm,0.8s,false,false,false,normal,forwards);
+              }
+          }
+      }
+  }
+}
+  @include keyframes (inM){
+      50%{
+          @include transform(rotate(0deg));
+      }
+      100%{
+          @include transform(rotate(405deg));
+      }
+  }
+
+  @include keyframes (outM){
+      50%{
+          @include transform(rotate(0deg));
+      }
+      100%{
+          @include transform(rotate(405deg));
+      }
+  }
+
+  @include keyframes (inT){
+      0%{
+          @include transform(translateY(0px) rotate(0deg));
+      }
+      50%{
+          @include transform(translateY(7px) rotate(0deg));
+      }
+      100%{
+          @include transform(translateY(7px) rotate(495deg));
+      }
+  }
+
+  @include keyframes (outT){
+      0%{
+          @include transform(translateY(0px) rotate(0deg));
+      }
+      50%{
+          @include transform(translateY(9px) rotate(0deg));
+      }
+      100%{
+          @include transform(translateY(9px) rotate(495deg));
+      }
+  }
+
+  @include keyframes (inBtm){
+      0%{
+          @include transform(translateY(0px) rotate(0deg));
+      }
+      50%{
+          @include transform(translateY(-7px) rotate(0deg));
+      }
+      100%{
+          @include transform(translateY(-7px) rotate(495deg));
+      }
+  }
+
+  @include keyframes (outBtm){
+      0%{
+          @include transform(translateY(0px) rotate(0deg));
+      }
+      50%{
+          @include transform(translateY(-7px) rotate(0deg));
+      }
+      100%{
+          @include transform(translateY(-7px) rotate(495deg));
+      }
+  }
+}

@@ -1,0 +1,37 @@
+$max: 80;
+$offset: 4;
+$unit: 'px'; 
+
+$breakpoint-list-maps:'xl','lg','md','sm','xs','xxs';
+// $breakpoint-list-maps:'xs','sm','md','lg','xl';
+
+// 
+// 索引: 01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,024,025,026,027,028
+// 間距: 04,08,16,20,24,28,32,36,40,44,48,52,56,60,64,68,72,76,80,84,88,92,96,100,104,108,112,116
+
+@mixin list-loop($className, $styleName) {
+  $i: 0;
+  $order: 0;
+    @while $i <= $max {
+        @each $name in $breakpoint-list-maps{
+            @include media-min($name){
+                #{$className + '-' +$name + '-' + $i} { 
+                    #{$styleName}: #{$i + $unit} !important;
+                }
+            }
+        }
+        $i: $i + $offset;
+        $order: $order+ 1;  // 預留索引
+    }
+}
+
+// example: pt-xl-0  => padding-top: 16px
+@include list-loop('.pt', 'padding-top');
+@include list-loop('.pr', 'padding-right');
+@include list-loop('.pb', 'padding-bottom');
+@include list-loop('.pl', 'padding-left');
+
+@include list-loop('.mt', 'margin-top');
+@include list-loop('.mr', 'margin-right');
+@include list-loop('.mb', 'margin-bottom');
+@include list-loop('.ml', 'margin-left');

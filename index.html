@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main mission -5</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>    
+    <link rel='stylesheet' href='./scss/app.css' /> 
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+  </head>
+  <body>
+    <div class="container pt-5">
+      <h1 class="text-center">KATA排行榜</h1>
+      <select class="custom-select my-3" onChange="optionData(this.value);">
+        <option value="個人時間排名" selected>個人時間排名</option>
+        <option value="組別投稿數排名">組別投稿數排名</option>
+        <option value="組別投稿平均時間排名">組別投稿平均時間排名</option>
+      </select>
+
+      <!---個人排名--->
+      <div class="table-person d-none">
+        <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center font-weight-bold " scope="col" width="60">項目</th>
+            <th class="text-left font-weight-bold" scope="col" >
+              <i class="fab fa-slack"></i>
+            </th>
+            <th class="text-center font-weight-bold" scope="col" width="100">
+              <i class="fas fa-users"></i>
+            </th>
+            <th class="text-center font-weight-bold" scope="col" width="60">
+              <i class="fab fa-youtube"></i>
+            </th>
+            <th class="text-center font-weight-bold" scope="col" width="60">
+              <i class="fab fa-codepen"></i>
+            </th>
+            <th class="text-left font-weight-bold" scope="col" >
+              <i class="fas fa-comments"></i>
+            </th>
+            <th class="text-center font-weight-bold" scope="col" width="120">練習時間</th>
+          </tr>
+        </thead>
+        <tbody class="table-person-tbody">
+          <!--表格-->
+        </tbody>
+        </table>
+        <nav class="pb-xs-5" aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <!-- <li class="page-item disabled previous">
+              <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li> -->
+            <!---頁碼--->
+            <!-- <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
+
+      <!---分組投稿數/分組平均時間--->
+      <div class="table-group d-none">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th class="text-center font-weight-bold " scope="col" >名次</th>
+            <th class="text-center font-weight-bold" scope="col" >組別</th>
+            <th class="text-center font-weight-bold" scope="col" >投稿數</th>
+            <th class="text-left font-weight-bold" scope="col" >平均投稿時間</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-tbody">
+          <!--表格-->
+        </tbody>
+      </table>
+      </div>
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

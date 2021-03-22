@@ -1,0 +1,71 @@
+// bg-color
+// stylelint-disable declaration-no-important
+
+// Contextual backgrounds
+
+@mixin text-emphasis-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    color: $color !important;
+  }
+  @if $emphasized-link-hover-darken-percentage != 0 {
+    a#{$parent} {
+      @include hover-focus() {
+        // color: darken($color, $emphasized-link-hover-darken-percentage) !important;
+      }
+    }
+  }
+  @include deprecate("`text-emphasis-variant()`", "v4.4.0", "v5", $ignore-warning);
+}
+
+
+@mixin bg-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    background-color: $color !important;
+  }
+  a#{$parent},
+  button#{$parent} {
+    @include hover-focus() {
+      // background-color: darken($color, 10%) !important;
+    }
+  }
+  @include deprecate("The `bg-variant` mixin", "v4.4.0", "v5", $ignore-warning);
+}
+
+@mixin bg-gradient-variant($parent, $color, $ignore-warning: false) {
+  #{$parent} {
+    background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+  }
+  @include deprecate("The `bg-gradient-variant` mixin", "v4.5.0", "v5", $ignore-warning);
+}
+
+// 
+
+@each $color, $value in $theme-colors {
+    @include bg-variant(".bg-#{$color}", $value, true);
+  }
+  
+  @if $enable-gradients {
+    @each $color, $value in $theme-colors {
+      @include bg-gradient-variant(".bg-gradient-#{$color}", $value, true);
+    }
+  }
+  
+  .bg-white {
+    background-color: $white !important;
+  }
+  
+  .bg-transparent {
+    background-color: transparent !important;
+  }
+
+  // text-color
+  @each $color, $value in $theme-colors {
+    @include text-emphasis-variant(".text-#{$color}", $value, true);
+  }
+
+// border color
+@each $color, $value in $theme-colors {
+    .border-#{$color} {
+      border-color: $value !important;
+    }
+  }

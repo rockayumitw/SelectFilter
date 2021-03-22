@@ -1,0 +1,116 @@
+header{
+    // padding: 14.85px 85px;
+    padding: 14.85px 0;
+    @include z-index(header);
+    @include transition(.3s);
+    @include media-max(lg){
+        padding: 14px 0;
+        // padding: 14px 40px;
+    }
+    @include media-max(sm){
+        padding: 8px 0;
+        // padding: 8px 20px;
+    }
+    &.pinned {
+        @include transform(translateY(0%));
+        @include transition(.3s);
+    }
+    &.unpinned {
+        @include transform(translateY(-100%));
+        @include transition(.3s);
+    }
+    &.sticky{
+        // background:map-get($headerGroup,'md-color');
+        padding-bottom: 0px !important;
+        padding-top: 0px !important;
+        @include transition(.3s);
+        @include media-max('sm'){
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
+        @include media-max('xs'){
+            padding-bottom: 0px;
+            padding-top: 0px;
+        }
+    }
+    .container{
+        @include media-max(md){
+            padding: 0;
+        }
+    }
+    .navbar-brand{
+        img{
+            width: 128px;
+            @include media-max(md){
+                width: 96px;
+            }
+        }
+    }
+    .navbar-nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        @include media-max(sm){
+            justify-content: flex-end;
+        }
+    }
+    .nav-item{
+        margin-right: 36px;
+        &:last-child{
+            margin-right: 0;
+        }
+        a.nav-link{
+            transition: .3s;
+            color: $link-color !important;
+            display: flex;
+            align-items: center;
+            &:hover{
+                transition: .3s;
+                color: $link-hover-color !important;
+                text-decoration: none;
+            }
+            // @include media-max(lg){
+            //     padding: 18px 0;
+            // }
+        }
+        @include media-max(lg){
+            margin-right: 0px;
+        }
+    }
+    .navbar{
+        padding: 0;
+        .navbar-toggler{
+            border: 0;
+            i{
+                width:100%;
+                background: $secondary;
+                float:left;
+                @include transform(scale(.8));
+             }
+             width: 45px;
+             height: 20px;
+             border:none;
+             &:hover{
+                //  background:map-get($headerGroup,'lg-hover-color');
+             }
+             @include hamburger-style('rotate-x'); 
+        }
+    }
+}
+
+.navbar-collapse{
+    &.show{
+        .navbar-nav{
+            text-align: center;
+        }
+        .nav-item{
+            @include media-max(md){
+                // background-color: $dovegray;
+                a{
+                    color: white;
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,39 @@
+// 字型
+// @import url("https://fonts.google.com/specimen/Raleway");     // title -Raleway
+// @import url("https://fonts.google.com/specimen/Open+Sans");   // text -Open sans
+
+// 套件
+// @import '../../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/bootstrap';
+
+// utils
+@import './_utils/_variable';
+@import './_utils/_mixin/mixin';
+@import './_utils/_mixin/animation';
+@import './_utils/grid';
+@import './_utils/position';
+@import './_utils/spacing';
+@import './_utils/colors';
+@import './_base/base';
+
+// layout
+@import './_layout/header';
+@import './_layout/footer';
+
+// components
+@import './_components/carousel';
+@import './_components/btn';
+@import './_components/form';
+@import './_components/border';
+@import './_components/tabs';
+@import './_components/card';
+@import './_components/swiper';
+@import './_components/check';
+@import './_components/pagination';
+@import './_components/dropdown';
+
+// page
+@import './_page/_page';
+
+
+

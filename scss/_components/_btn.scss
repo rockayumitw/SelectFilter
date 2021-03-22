@@ -1,0 +1,61 @@
+
+// -----
+// btn-size
+// -----
+
+// @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius); 
+// button($color,$background,$HoverColor,$HoverBackground,$border)
+
+.btn{
+    // width: 100%;
+    font-weight: bold;
+    margin-bottom: 0px;
+    &-teal{
+        background: $teal;
+        color: white;
+        &:hover{
+            background: lighten($teal, 10%);
+            color: white;
+        }
+    }
+    &-primary{
+        border: 0px !important;
+        @include button($white,$primary,$white,lighten($primary,5%), 0px);
+    }
+    &-outline-primary{
+        @include button($primary,transparent,lighten($primary, 5%),transparent, 1px solid lighten($primary, 5%));
+    }
+    &-outline-white{
+        @include button($white,transparent,lighten($white, 5%),transparent, 1px solid lighten($white, 5%));
+    }
+    &-white{
+        border: 0px !important;
+        @include button($primary,$white,$white,$primary, 0px solid $primary);
+    }
+    &-secondary{
+        border: 0px !important;
+        @include button($black,$secondary,$black,$secondary, 0px solid $secondary);
+    }
+    &-black{
+        border: 0px !important;
+        @include button($white,$black,$white,$black, 0px solid $black);
+    }
+    &-lg{
+        width: 100%;
+        @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius);
+    }
+    &-md{
+        @include button-size($btn-padding-y-md, $btn-padding-x-md, 16px, $btn-line-height-md, $btn-border-radius);
+        font-size: 16px;
+    }
+    &-sm{
+        @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius);
+    }
+    &-xs{
+        @include button-size($btn-padding-y-xs, $btn-padding-x-xs, $btn-font-size-xs, $btn-line-height-xs, $btn-border-radius);
+    }
+}
+
+
+
+

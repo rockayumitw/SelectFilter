@@ -1,0 +1,42 @@
+// swiper -custome
+.swiper{
+    .swiper-button{
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+    }
+    .swiper-button-prev{
+        color: $black;
+        
+        &:after{
+            display: none;
+        }
+    }
+    .swiper-button-next{
+        color: $black;
+        &:after{
+            display: none;
+        }
+    }
+}
+
+.carousel{
+    .material-icons{
+        font-size: 48px;
+        @include media-max(sm){
+            font-size: 32px;
+        }
+    }
+    .swiper-button-prev{
+        left: 500px;
+        @include media-max(2xl){
+            left: 20px;
+        }
+    }
+    .swiper-button-next{
+        right: 500px;
+        @include media-max(2xl){
+            right: 20px;
+        }
+    }
+}

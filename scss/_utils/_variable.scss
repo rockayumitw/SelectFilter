@@ -1,0 +1,373 @@
+// container -寬度設定
+$container-max-widths: (
+  sm: 100%,
+  md: 100%,
+  lg: 960px,
+  xl: 1140px
+);
+
+// 字體,陰影
+$font-family: "Roboto", sans-serif;
+$shadow: rgba(0,40,62,0.5);
+
+// them-語系
+// example: them-TW | them-EN
+// $them-lang:'TW','JP','EN','CN','KO';lg
+$paragraph-margin-bottom:  0;
+
+$position-value: 20;
+
+// 32 lg
+// 24px md
+// 20 sm
+// 16px xs
+
+// font-size設定
+$font-size-base: 10px;
+$font-size: () !default;
+$font-size: map-merge(
+  (
+    base: $font-size-base,          // 10  base 
+    xs:  ($font-size-base * 1.6),   // 16
+    sm:  ($font-size-base * 2),     // 20 
+    md:  ($font-size-base * 2.4),   // 24   
+    lg:  ($font-size-base * 3.2),   // 32
+  ),
+  $font-size
+);
+
+$h1-font-size:  $font-size-base * 4.8;    // -無使用
+$h2-font-size:  $font-size-base * 4.8;    // 48
+$h3-font-size:  $font-size-base * 3.2;    // 32
+$h4-font-size:  $font-size-base * 2.4;    // 24
+$h5-font-size:  $font-size-base * 2;      // 20
+$h6-font-size:  $font-size-base * 1.6;    // 16
+$headings-margin-bottom:  0;
+
+// 43 xl
+// 33 lg
+// 25 md
+// 24 sm
+// 22 xs
+
+// line-height:行高設定 
+$font-line-Height-base: 10px;             // 10
+$font-line-Height: () !default;
+$font-line-Height: map-merge(
+  (
+    base: $font-line-Height-base,         // 10
+    xs: ($font-line-Height-base * 2.2),   // 22
+    sm: ($font-line-Height-base * 2.4),   // 24
+    md: ($font-line-Height-base * 2.5),   // 25
+    lg :($font-line-Height-base * 3.3),   // 33
+    xl: ($font-line-Height-base * 4.3),   // 43
+  ),
+  $font-line-Height
+);
+
+// color -gray
+$white: #fff;
+$gray-100: #00000029; // #00000020
+$gray-200: #FAFAFA;
+$gray-300: #F7F7F7;
+$gray-400: #DEE2E6;   // #DEE2E6
+$gray-500: #CED4DA;   // #CED4DA  
+$gray-600: #818A91;   // #818A91  
+$gray-700: #212529;
+$black: #000;
+$mask: rgba(0,0,0,0.8);
+
+$grays: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grays: map-merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700
+  ),
+  $grays
+);
+
+
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$cyan:    #17a2b8 !default;
+
+$fountainBlue: #64C3BF; // lociaont-tag
+$teal:    #00807E; // title tip price
+$pineGreen: #007572; // border
+$ming: #367E7D;
+
+
+$colors: map-merge(
+  (
+    "ming":       $ming,
+    "pineGreen":    $pineGreen,
+    "fountainBlue": $fountainBlue,
+    "teal":       $teal,
+    "blue":       $blue,
+    "indigo":     $indigo,
+    "purple":     $purple,
+    "pink":       $pink,
+    "red":        $red,
+    "orange":     $orange,
+    "yellow":     $yellow,
+    "green":      $green,
+    "cyan":       $cyan,
+    "white":      $white,
+    "gray":       $gray-600,
+    "gray-dark":  $gray-800
+  ),
+  $colors
+);
+
+$primary :#6C51E2;
+$secondary: $gray-300;
+$info:#818A91;
+$success: $green;
+$warning: $yellow;
+$danger: $danger;
+$light: $gray-100;
+$dark: $gray-700;
+
+$theme-colors: (
+    "ming":       $ming,
+    "pineGreen":    $pineGreen,
+    "fountainBlue": $fountainBlue,
+    "teal":       $teal,
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger,
+    "light":      $light,
+    "white":      $white,
+    "black":      $black,
+    "mask":       $mask,
+    "dark":       $dark,
+    "gray-100":   $gray-100,
+    "gray-200":   $gray-200,
+    "gray-300":   $gray-300,
+    "gray-400":   $gray-400,
+    "gray-500":   $gray-500,
+    "gray-600":   $gray-600,
+    "gray-700":   $gray-700,
+);
+
+$body-bg:     $white;
+// $body-color:  $gray-900;
+
+// link color
+$link-color: $primary;
+$link-hover-color: $primary;
+
+// spacer
+$spacer: 4px ;
+$spacers: () !default;
+$spacers: (
+  0: 0,                     
+  1: $spacer,             // 4
+  2: ($spacer * 1.5),     // 6    
+  3: ($spacer * 2),       // 8
+  4: ($spacer * 4),       // 16
+  5: ($spacer * 5),       // 20
+  6: ($spacer * 5.5),     // 22
+  7: ($spacer * 6),       // 24
+  8: ($spacer * 6.5),     // 26
+  9: ($spacer * 7.5),     // 30
+  10: ($spacer * 8),      // 32
+  11: ($spacer * 14),     // 56
+  12: ($spacer * 15),     // 60
+  13: ($spacer * 23.75),  // 95
+  );
+
+// w / h
+// $sizes: () !default;
+$sizes:(
+  10: 10%,
+  25: 25%,
+  50: 50%,
+  60: 60%,
+  70: 70%,
+  75: 75%,
+  100: 100%,
+  auto: auto
+);
+
+// modal
+$modal-xl: 1140px !default;
+$modal-lg: 800px !default;
+$modal-md: 500px !default;
+$modal-sm: 300px !default;
+$modal-content-border-width: 0px;
+$modal-content-border-radius: 5px;
+
+// border
+$border-radius-sm: 5px;
+$border-radius-lg: 12px;
+$border-color:  $primary !default;
+$border-width : 1px;
+
+// input
+$label-margin-bottom: 0;
+$input-color:   #00000060;
+$form-group-margin-bottom: 16px;
+$label-margin-bottom: 4px;
+$input-border-width: 1px;
+
+// input- spacer
+$input-padding-y-lg:($spacer * 2); // 16
+$input-padding-x-lg:($spacer * 2); // 16
+
+$input-focus-box-shadow: none;
+$input-focus-bg:#edd3a3;
+// $input-focus-box-shadow: inset 0px 0px 5px rgba($primary,0.3 );
+$input-plaintext-color: #00000099;
+
+// $input-padding-y-sm:    $input-btn-padding-y-sm !default;
+// $input-padding-x-sm:    $input-btn-padding-x-sm !default;
+// $input-font-size-sm:    $input-btn-font-size-sm !default;
+// $input-line-height-sm:  $input-btn-line-height-sm !default;
+
+$input-btn-padding-y-lg: 17px ;
+$input-btn-padding-x-lg: 16px ;
+$input-btn-font-size-lg: $font-size-base ;
+
+$input-line-height-lg:  24px ;
+$input-font-size-lg: 16px;
+
+$input-bg:  $white !default;
+$input-disabled-bg: $gray-200 !default;
+
+// $input-color:   $gray-700 !default;
+$input-border-color:    $gray-200;
+// $input-border-width:    $input-btn-border-width !default;
+// $input-box-shadow:  inset 0 1px 1px rgba($black, .075) !default;
+
+$input-border-radius:   $border-radius ;
+$input-border-radius-lg:    $border-radius-sm ;
+$input-border-radius-sm:    $border-radius-sm ;
+
+$input-focus-bg:            $input-bg ;
+$input-focus-border-color:  $primary ;
+// $input-focus-color:         $input-color !default;
+// $input-focus-width:         $input-btn-focus-width !default;
+// $input-focus-box-shadow:    $input-btn-focus-box-shadow !default;
+
+$input-placeholder-color:   $gray-300 ;
+$input-plaintext-color:     $body-color ;
+
+$input-height:      add($input-line-height , add($input-padding-y, $input-height-border, false)) ;
+$input-height-sm:   $input-line-height-sm ;
+$input-height-lg:   add($input-line-height-lg , add($input-padding-y-lg * 1.875, $input-height-border, false));
+
+// buttons
+$btn-padding-y-lg: 17px;
+$btn-padding-x-lg: 0;
+
+$btn-padding-y-md: 17px;
+$btn-padding-x-md: 32px;
+
+$btn-padding-y-sm: 17px;
+$btn-padding-x-sm: 16px;
+
+$btn-padding-y-xs: 10px;
+$btn-padding-x-xs: 40px;
+
+$btn-line-height-lg: 25px;
+$btn-line-height-md: 25px;
+$btn-line-height-sm: 25px;
+$btn-line-height-xs: 21px;
+
+$btn-font-size-lg: 20px;
+$btn-font-size-md: 20px;
+$btn-font-size-sm: 20px;
+$btn-font-size-xs: 14px;
+
+$btn-border-radius: $border-radius-sm;
+
+
+// z-index
+$z-index: (
+  loading: 1050,
+  carousel_content: 10,
+  carousel_mask: 9,
+  price-box:5,
+  sort: 4,
+  dropdownMenuIndex:5,
+  reservation-list:4,
+  card_text: 3,
+  card_linear_mask: 2,
+  card_image: 1,
+  header: 1
+);
+
+// for BV
+$grid-breakpoints:(
+    xxs: 319.98px, // ios se5
+    xs : 575.98px, 
+    sm : 767.98px,
+    md : 991.98px,
+    lg : 1199.98px,
+    xl : 1399.98px,
+    2xl: 1599.98px
+);
+
+// 圖片路徑
+$pic-group:(
+  'login-bg':'~assets/images/image23.jpg',
+  // 'pic-1':'~assets/images/index2.jpg',
+  // 'pic-2':'~assets/images/index3.png',
+);
+
+
+// Pagination
+
+$pagination-padding-y:               8px;
+$pagination-padding-x:              14px;
+$pagination-padding-y-sm:           .25rem ;
+$pagination-padding-x-sm:           .5rem ;
+$pagination-padding-y-lg:           .75rem ;
+$pagination-padding-x-lg:           1.5rem ;
+$pagination-line-height:            1.25 ;
+
+$pagination-color:                  $link-color ;
+$pagination-bg:                     transparent ;
+$pagination-border-width:           0 ;
+$pagination-border-color:           $white ;
+
+$pagination-focus-box-shadow:       transparent ;
+$pagination-focus-outline:          0 ;
+
+$pagination-hover-color:            $white;
+$pagination-hover-bg:               $primary ;
+$pagination-hover-border-color:     transparent ;
+
+$pagination-active-color:           $white ;
+$pagination-active-bg:              $primary ;
+$pagination-active-border-color:    $white ;
+
+$pagination-disabled-color:         $gray-600 ;
+$pagination-disabled-bg:            transparent ;
+$pagination-disabled-border-color:  $gray-300 ;
+
+
+
+// 動畫前綴
+$experimental-support-for-webkit: true;
+$experimental-support-for-mozilla: true;
+$experimental-support-for-opera: true;
+$experimental-support-for-microsoft: true;
+$experimental-support-for-khtml: false;
+

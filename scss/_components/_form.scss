@@ -1,0 +1,219 @@
+// --------
+// input
+// --------
+.form-group{
+  label{
+    min-width: 100px;
+  }
+  input,textarea,select{
+    background: $gray-200;
+    border: 0;
+    border-bottom: 1px solid #00807E;
+    padding: 8px 12px;
+    min-height: 38px;
+    width: 69%;
+    @include media-max(md){
+      width: 80%;
+    }
+  }
+  margin-bottom: 16px;
+}
+
+.form{
+  &-xl{
+    padding: 23px 0px;
+    .input-group-text{
+      @include media-max(lg){
+        padding: 16px 8px !important;
+      }
+    }
+    .input-group{
+      max-width: 232px;
+        @include media-max(md){
+          max-width: 100%;
+          width: 100%!important;
+        }
+      }
+      .btn{
+        @include media-max(md){
+          width: 100%;
+        }
+      }
+  }
+  &-lg{
+    padding: 24px;
+    border-radius: 8px;
+    position: relative;
+    top: -40px;
+    z-index:9;
+    max-width: 920px;
+    .input-group{
+    max-width: 232px;
+      @include media-max(md){
+        max-width: 100%;
+        width: 100%!important;
+      }
+    }
+    .btn{
+      @include media-max(md){
+        width: 100%;
+      }
+    }
+  }
+  &-md{
+    max-width: 540px;
+    .btn{
+      border-radius: 0;
+    }
+  }
+  &-xs{
+    max-width: 350px;
+  }
+}
+
+// .form-control-sm {
+//     height: $input-height-sm;
+//     padding: $input-padding-y-sm $input-padding-x-sm;
+//     @include font-size($input-font-size-sm);
+//     line-height: $input-line-height-sm;
+//     @include border-radius($input-border-radius-sm);
+//   }
+  
+  .form-control-lg {
+    height: $input-height-lg;
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $input-font-size-lg;
+    line-height: $input-line-height-lg;
+    border-radius: $border-radius-sm;
+  }
+
+  .input-button{
+    min-width: 170px !important;
+    color: $gray-300;
+  }
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: $input-padding-y $input-padding-x;
+    margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+    @include font-size($input-font-size); // Match inputs
+    font-weight: $font-weight-normal;
+    line-height: $input-line-height;
+    color: $input-group-addon-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $input-group-addon-bg;
+    border: $input-border-width solid $input-group-addon-border-color;
+    @include border-radius($input-border-radius);
+  
+    // Nuke default margins from checkboxes and radios to vertically center within.
+    input[type="radio"],
+    input[type="checkbox"] {
+      margin-top: 0;
+    }
+  }
+
+  .input-group-lg > .form-control:not(textarea),
+  .input-group-lg > .custom-select {
+    height: $input-height-lg;
+  }
+
+  .input-lg{
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $input-font-size-lg;
+    line-height: $input-line-height-lg;
+    @include border-radius($input-border-radius-lg);
+    // border: 0;
+    background: $white;
+    height: $input-height-lg;
+    border: 1px solid $input-border-color;
+    width: 100%;
+    transition: .3s;
+    &:focus{
+      transition: .3s;
+      border: 1px solid $input-focus-border-color;
+    }
+    &:active{
+      transition: .3s;
+      border: 1px solid $input-focus-border-color;
+    }
+  }
+  
+  .input-group-lg > .form-control,
+  .input-group-lg > .custom-select,
+  .input-group-lg > .input-group-prepend > .input-group-text,
+  .input-group-lg > .input-group-append > .input-group-text,
+  .input-group-lg > .input-group-prepend > .btn,
+  .input-group-lg > .input-group-append > .btn {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $input-font-size-lg;
+    line-height: $input-line-height-lg;
+    @include border-radius($input-border-radius-lg);
+    border: 0;
+    background: $white;
+  }
+
+  // input 
+  .input-group-sm > .form-control:not(textarea),
+  .input-group-sm > .custom-select {
+    height: $input-height-sm;
+  }
+  
+  .input-group-sm > .form-control,
+  .input-group-sm > .custom-select,
+  .input-group-sm > .input-group-prepend > .input-group-text,
+  .input-group-sm > .input-group-append > .input-group-text,
+  .input-group-sm > .input-group-prepend > .btn,
+  .input-group-sm > .input-group-append > .btn {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+    @include font-size($input-font-size-sm);
+    line-height: $input-line-height-sm;
+    @include border-radius($input-border-radius-sm);
+  }
+  
+  .input-group-lg > .custom-select,
+  .input-group-sm > .custom-select {
+    padding-right: $custom-select-padding-x + $custom-select-indicator-padding;
+  }
+  
+  // vue-simple-range-slider 套件
+  .simple-range-slider-bar{
+    background: $primary !important;
+  }
+  .simple-range-slider-anchor{
+    background: $primary !important;
+  }
+
+  // datePicker 套件
+  .mx-icon-calendar{
+    display: none;
+  }
+
+  .mx-datepicker-range{
+    width: 100%;
+  }
+
+  .mx-calendar-content .cell{
+    &.active{
+      background: $primary;
+      border-top-left-radius: $border-radius-sm !important;
+      border-bottom-left-radius: $border-radius-sm;
+      &:last-child{
+        border-top-left-radius: 0px !important;
+        border-bottom-left-radius: 0px !important;
+        border-top-right-radius: $border-radius-sm;
+        border-bottom-right-radius: $border-radius-sm;
+      }
+    }
+  }
+
+  .mx-input{
+    border: 0;
+    box-shadow: none;
+    width: 100%;
+    height: $input-height-lg;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    text-align: center;
+  }

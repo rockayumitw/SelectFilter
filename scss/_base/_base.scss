@@ -1,0 +1,130 @@
+// ------- 
+// 全站設定 
+// ------- 
+
+*{
+    outline: 0;
+    @include box-sizing(border-box);
+}
+
+html,body{
+    font-family:$font-family !important;
+    scroll-behavior:smooth;
+    padding:0 !important;
+    min-width: 320px;
+}
+
+.wrap{
+    overflow: hidden;
+    @include fixed-top-blank-height-use(72px,56px);
+    &.inner-page{
+        @include fixed-top-blank-height-use(200px,80px);
+        @include media-max(sm){
+            @include fixed-top-blank-height-use(184px,96px);
+        }
+        @include media-max(xs){
+            @include fixed-top-blank-height-use(112px,96px);
+        }
+    }
+    &.search-page{
+        @include fixed-top-blank-height-use(200px,180px);
+        @include media-max(sm){
+            @include fixed-top-blank-height-use(180px,100px);
+        }
+    }
+    &.reservation-page{
+        @include fixed-top-blank-height-use(96px,96px);
+        @include media-max(sm){
+            @include fixed-top-blank-height-use(72px,56px);
+        }
+    }
+}
+
+.container{
+    @include media-max(md){
+        max-width: map-get($container-max-widths, md);
+    }
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-bottom: $headings-margin-bottom;
+  font-weight: bold;
+}
+
+h1, .h1 { }
+h2, .h2 { 
+    font-size: $h2-font-size; 
+    @include media-max(sm){
+        font-size: $h4-font-size;
+    }
+}
+h3, .h3 { 
+    font-size: $h3-font-size;
+    @include media-max(sm){
+        font-size: $h4-font-size;
+    }
+}
+h4, .h4 { 
+    font-size: $h4-font-size; 
+    @include media-max(sm){
+        font-size: $h5-font-size;
+    }
+}
+h5, .h5 { 
+    font-size: $h5-font-size; 
+}
+h6, .h6 { 
+    font-size: $h6-font-size; 
+}
+
+ul{
+    padding: 0px;
+    margin: 0px;
+    li{
+        list-style: none;
+        padding: 0px;
+    }
+}
+
+p{
+    margin-bottom: 0;
+}
+
+a, .nav-link{
+    transition: .3s;
+    text-decoration: none;
+    color: $link-color !important;
+    &:hover{
+        transition: .3s;
+        text-decoration: none !important;
+        color: $link-hover-color !important;
+    }
+}
+
+.material-icons{
+    font-size: 20px;
+}
+
+.badge{
+    padding: 4px 8px;
+    margin-right: 4px;
+    font-size: map-get($font-size, base);
+    font-weight: normal;
+}
+
+.bottom-0{
+    bottom: 0px;
+}
+
+@each $name, $item in $z-index{
+    .index-#{$name}{
+        z-index:$item;
+    }
+}
+
+@each $prop, $abbrev in (width: w, height: h) {
+    @each $size, $length in $sizes {
+      .#{$abbrev}-#{$size} { #{$prop}: $length !important; }
+    }
+  }

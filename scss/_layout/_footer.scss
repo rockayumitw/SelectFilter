@@ -1,0 +1,17 @@
+footer{
+    padding: 27px 85px;
+    @include media-max(md){
+        padding: 24px 39px;
+    }
+    .footer-menu{
+        @include media-max(md){
+            justify-content: center;
+        }
+    }
+    li{
+        margin-right: 24px;
+        &:last-child{
+            margin-right: 0px;
+        }
+    }
+}

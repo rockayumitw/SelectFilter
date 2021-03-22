@@ -1,0 +1,27 @@
+.tabs{
+    .nav{
+        border: 0;
+    }
+    .nav-link{
+        color: $gray-300 !important;
+        border: 0px;
+        border-bottom: 2px solid $gray-200;
+        padding: 0px 24px;
+        @include media-max(md){
+            padding: 0px 16px;
+        }
+        &.active{
+            color: $link-hover-color !important;
+            border-bottom: 2px solid $primary;
+        }
+        &:hover{
+            color: $link-hover-color !important;
+            border-bottom: 2px solid $primary;
+            text-decoration: none;
+        }
+        &.disabled{
+            color: $gray-300 !important;
+            border-bottom: 2px solid $gray-200;
+        }
+    }
+}

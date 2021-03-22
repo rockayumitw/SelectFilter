@@ -1,0 +1,140 @@
+//transition套用
+//example: @include transition(.9);
+@mixin transition($sec) {
+  transition: $sec;
+  transition: -webkit-transform $sec;
+  -webkit-transition: $sec;
+  -moz-transition: $sec;
+  -ms-transition: $sec;
+  -o-transition: $sec;
+}
+
+//transform
+//example: @include transform(scale(.9) rotate(60deg));
+//example: @include transform(rotate(60deg));
+@mixin transform($type) {
+  -webkit-transform: $type;
+  -moz-transform: $type;
+  -o-transition: $type;
+  transform: $type;
+}
+
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+  -moz-transform: translate($x, $y);
+  -ms-transform: translate($x, $y);
+  -o-transform: translate($x, $y);
+  transform: translate($x, $y);
+}
+
+// 軸心
+// @include tranform-origin(0,0);
+@mixin transform-origin($origin) {
+  -webkit-transform-origin: $origin;
+  -moz-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+//動畫前贅詞套用
+//infinite : 反覆次數(無限)
+//linear : 動畫曲線(速率一致)
+//alternate : 動畫反轉
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+//動畫
+//前綴
+@mixin experimental(
+  $property,
+  $value,
+  $moz: $experimental-support-for-mozilla,
+  $webkit: $experimental-support-for-webkit,
+  $o: $experimental-support-for-opera,
+  $ms: $experimental-support-for-microsoft,
+  $khtml: $experimental-support-for-khtml,
+  $official: true
+) {
+  @if $webkit and $experimental-support-for-webkit {
+    -webkit-#{$property}: $value;
+  }
+  @if $khtml and $experimental-support-for-khtml {
+    -khtml-#{$property}: $value;
+  }
+  @if $moz and $experimental-support-for-mozilla {
+    -moz-#{$property}: $value;
+  }
+  @if $ms and $experimental-support-for-microsoft {
+    -ms-#{$property}: $value;
+  }
+  @if $o and $experimental-support-for-opera {
+    -o-#{$property}: $value;
+  }
+  @if $official {
+    #{$property}: $value;
+  }
+}
+
+//動畫
+//example: @include animation($name,$duration,$timing-function: false,$delay: false,$iteration-count: false,$direction: false,$fill-mode: false)
+//example: @include animation(pageIn, 0.3s, linear, false, 1, normal, forwards);
+@mixin animation(
+  $name,
+  $duration,
+  $timing-function: false,
+  $delay: false,
+  $iteration-count: false,
+  $direction: false,
+  $fill-mode: false
+) {
+  @include experimental(animation-name, $name, -moz, -webkit, -o, -ms, not -khtml, official); //動畫名稱
+  @include experimental(
+    animation-duration,
+    $duration,
+    -moz,
+    -webkit,
+    -o,
+    -ms,
+    not -khtml,
+    official
+  ); //定義動畫完成一次週期的時間 .3s / forward
+
+  @if $timing-function {
+    //定義動畫轉變時時間的加速曲線 (例如 linear、ease-in、ease-out、ease-in-out、step-start、step-end、steps(int,start/end)、cubic-bezier(n,n,n,n))。
+    @include experimental(animation-timing-function, $timing-function, -moz, -webkit, -o, -ms, not -khtml, official);
+  }
+
+  @if $delay {
+    //定義元素讀取完畢到動畫開始的間隔時間
+    @include experimental(animation-delay, $delay, -moz, -webkit, -o, -ms, not -khtml, official);
+  }
+
+  @if $iteration-count {
+    //定義動畫重複的次數。可用 infinite 來讓動畫永遠重複播放,數字1。
+    @include experimental(animation-iteration-count, $iteration-count, -moz, -webkit, -o, -ms, not -khtml, official);
+  }
+
+  @if $direction {
+    //預設normal,定義是否動畫播放完畢後將會反向播放 
+    //example: reverse、alternate、alternate-reverse
+    @include experimental(animation-direction, $direction, -moz, -webkit, -o, -ms, not -khtml, official);
+  }
+
+  @if $fill-mode {
+    //fill-mode: 定義元素在動畫播放外(動畫開始前及結束後)的狀態
+    //example: none、forwards、backwards、both。
+    @include experimental(animation-fill-mode, $fill-mode, -moz, -webkit, -o, -ms, not -khtml, official);
+  }
+}
