@@ -65,34 +65,29 @@ function initGroupData(data, template){
   let uniKeyGroup = data.filter( item => !set.has(item.jsGroup) ? set.add(item.jsGroup) : false );
   uniKeyGroup.forEach(unikey => {
     let groupObj = {};
+    let tempTeamTime = [];
     let submit = 0;
     data.forEach(item => {
       if(item.jsGroup == unikey.jsGroup){
         groupObj.jsGroup = item.jsGroup;
         submit += 1;
         groupObj.submit = submit;
-        groupObj.timer = item.timestamp;
+        tempTeamTime.push((item.practiceMinute*60) + Number(item.practiceSecond));
+        groupObj.timer = tempTeamTime;
       }
     })
     newData.push(groupObj);
+  })
+  newData.forEach(item => {
+    item.timer = Math.round(([...item.timer].reduce((a,b)=> a+b))/item.submit);
   })
   groupClassis(newData, template);
 }
 
 // 組別投稿數排名/組別投稿平均時間排名
 function groupClassis(newData, template){
-  newData = newData.sort(function (a, b) {
-    if(template == '組別投稿數排名'){ 
-      return b.submit - a.submit;
-    }else{
-      let itemA = changeTimer(a.timer);
-      let itemB = changeTimer(b.timer);
-      return itemA - itemB ;
-    }
-  });
-  newData.forEach(item=>{
-    templateRender(item, template);
-  })
+  newData.sort((a, b) => template == '組別投稿數排名' ? b.submit - a.submit : a.timer - b.timer)
+  newData.forEach(item => templateRender(item, template));
 }
 
 // 字串模板選染
@@ -120,32 +115,11 @@ function templateRender(item, template){
         <th class="text-center">${index += 1}</th>
         <td class="text-center">${item.jsGroup}</td>
         <td class="text-center">${item.submit}</td>
-        <td class="text-left">${item.timer}</td>
+        <td class="text-center">${item.timer}</td>
       </tr>
       `
       groupTableTbody.innerHTML += str;
       break;
-  }
-}
-
-// 時間換算
-function changeTimer(item){
-  if(item.indexOf('下午') > -1){
-    let timeSplit = item.split(' 下午 ');
-    let date = timeSplit[0];
-    let time = timeSplit[1].split(':');
-    let hour = (parseInt(time[0]) + 12).toString();
-    time.shift(1);
-    time.unshift(hour);
-    time = time.toString().replaceAll(',',':');
-    let timer = Date.parse((date+' '+time)).toString();
-    return timer;
-  }else if(item.indexOf('上午') > -1){
-    let timeSplit = item.replace(' 上午 ',' ');
-    let timer = Date.parse(timeSplit).toString();
-    return timer;
-  } else {
-    return item;
   }
 }
 
@@ -178,7 +152,6 @@ function pagination(data, template){
       personDataSlice(currentPage, pageItemDefaultNum, template);
       })
   })
-
 }
 
 // 個人排名一頁筆數顯示篩選
